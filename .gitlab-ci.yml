@@ -1,23 +1,26 @@
 stages:
   - install
+  - verify
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules
+
+image: node:12-alpine
 
 install_dependencies:
   stage: install
-  image: node:12-alpine
   tags:
     - docker
   script:
-    - npm install
-    - npm ngcc --properties es2015 --create-ivy-entry-points
-  cache:
-    key:
-      files:
-        - package-lock.json
-    paths:
-      - node_modules
-  only:
-    refs:
-      - merge_requests
-      - master
-    changes:
-      - package-lock.json
+    - npm install -g nx
+    - npm ci
+
+build:
+  stage: verify
+  script:
+    - nx affected:build --all
+
