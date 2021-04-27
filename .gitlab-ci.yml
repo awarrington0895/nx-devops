@@ -1,7 +1,23 @@
-job_1:
-  stage: build
+stages:
+  - install
+
+install_dependencies:
+  stage: install
   image: node:12-alpine
   tags:
     - docker
   script:
-    - node --version
+    - npm install
+    - npm ngcc --properties es2015 --create-ivy-entry-points
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+  only:
+    refs:
+      - merge_requests
+      - master
+    changes:
+      - package-lock.json
