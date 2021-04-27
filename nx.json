@@ -1,10 +1,10 @@
 {
-  "npmScope": "devops",
-  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "package.json": { "dependencies": "*", "devDependencies": "*" },
     ".eslintrc.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "devops",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -13,6 +13,7 @@
   },
   "projects": {
     "todos": { "tags": [] },
-    "todos-e2e": { "tags": [], "implicitDependencies": ["todos"] }
+    "todos-e2e": { "tags": [], "implicitDependencies": ["todos"] },
+    "api": { "tags": [] }
   }
 }
