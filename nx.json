@@ -14,6 +14,8 @@
   "projects": {
     "todos": { "tags": [] },
     "todos-e2e": { "tags": [], "implicitDependencies": ["todos"] },
-    "api": { "tags": [] }
+    "api": { "tags": [] },
+    "data": { "tags": [] },
+    "ui": { "tags": [] }
   }
 }

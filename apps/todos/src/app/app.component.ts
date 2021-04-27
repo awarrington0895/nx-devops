@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-
-interface Todo {
-  title: string;
-}
+import { Todo } from '@devops/data';
 
 @Component({
   selector: 'devops-root',
