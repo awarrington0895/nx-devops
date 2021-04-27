@@ -16,7 +16,7 @@ install_dependencies:
   tags:
     - docker
   script:
-    - npm ci
+    - npm install
 
 build:
   stage: verify
