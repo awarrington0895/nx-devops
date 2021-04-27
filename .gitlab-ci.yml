@@ -20,5 +20,7 @@ install_dependencies:
 
 build:
   stage: verify
+  before_script:
+    - git fetch origin
   script:
     - npm run affected:build
