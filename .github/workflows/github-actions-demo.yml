@@ -37,5 +37,5 @@ jobs:
 
       - uses: mansagroup/nrwl-nx-action@v2.1.0
         with:
-          targets: lint, build
+          targets: lint,build,test
           args: --with-deps
