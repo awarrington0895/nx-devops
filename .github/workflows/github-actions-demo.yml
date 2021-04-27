@@ -4,7 +4,7 @@ jobs:
   Explore-Github-Actions:
     runs-on: ubuntu-latest
     steps:
-      - uses: mansagroup/nrwl-nx-action@v2
+      - uses: mansagroup/nrwl-nx-action@v2.1.0
         with:
           targets: lint, build
           args: --with-deps
