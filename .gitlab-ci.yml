@@ -16,11 +16,9 @@ install_dependencies:
   tags:
     - docker
   script:
-    - npm install -g nx
     - npm ci
 
 build:
   stage: verify
   script:
-    - nx affected:build --all
-
+    - npm run affected:build
