@@ -4,4 +4,7 @@ jobs:
   Explore-Github-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The job was triggered by ${{ github.event_name }} event"
+      - uses: mansagroup/nrwl-nx-action@v2
+        with:
+          targets: lint, build
+          args: --with-deps
