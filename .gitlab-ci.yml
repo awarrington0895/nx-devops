@@ -9,7 +9,7 @@ cache:
   paths:
     - node_modules
 
-image: node:12-alpine
+image: node:12
 
 install_dependencies:
   stage: install
