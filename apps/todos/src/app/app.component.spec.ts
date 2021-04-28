@@ -1,7 +1,7 @@
 import { AppComponent } from './app.component';
 import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TodosComponent } from 'libs/ui/src/lib/todos/todos.component';
+import { TodosComponent } from '@devops/ui';
 import { MockComponent } from 'ng-mocks';
 
 describe('AppComponent', () => {
