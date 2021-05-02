@@ -10,6 +10,7 @@ export class AppService {
   }
 
   addTodo() {
+    console.log('addTodo was called!')
     this.todos.push({
       title: `New todo ${Math.floor(Math.random() * 1000)}`
     });

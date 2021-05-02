@@ -1,6 +1,6 @@
 name: Pull Request Build
 
-on: 
+on:
   pull_request:
     branches:
       - master
@@ -48,17 +48,25 @@ jobs:
           name: todos
           path: dist/apps/todos
 
-
       - uses: actions/upload-artifact@v2
         with:
           name: api
           path: dist/apps/api
-  
-  deploy:
+
+  deploy-api:
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     needs: build
-    
+
     steps:
       - run: echo "We got ourselves a deploy!"
 
+      - uses: actions/download-artifact@v2
+        with:
+          name: api
+
+      - name: Display working directory
+        run: ls -la
+
+      - name: Display api artifacts 
+        run: ls -la api
