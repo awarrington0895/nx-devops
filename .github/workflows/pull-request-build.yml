@@ -73,10 +73,10 @@ jobs:
         with:
           files: api
           allow_failures: true
-      
+
       - name: Deploy if file exists
         if: steps.check_artifact.outputs.files_exists == 'true'
-        run: "Deploying api"
+        run: echo "Deploying api" && ls -la api
 
   deploy-todos:
     if: ${{ github.ref == 'refs/heads/master' }}
@@ -98,7 +98,7 @@ jobs:
         with:
           files: todos
           allow_failures: true
-      
+
       - name: Deploy if file exists
         if: steps.check_artifact.outputs.files_exists == 'true'
-        run: "Deploying todos"
+        run: echo "Deploying todos" && ls -la todos
