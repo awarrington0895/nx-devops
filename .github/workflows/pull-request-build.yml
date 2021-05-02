@@ -1,6 +1,12 @@
 name: Pull Request Build
 
-on: [pull_request]
+on: 
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -44,3 +50,12 @@ jobs:
           path: |
             dist/apps/todos
             dist/apps/api
+  
+  deploy:
+    if: ${{ github.ref == 'refs/head/master' }}
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - run: echo "We got ourselves a deploy!"
+
