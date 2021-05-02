@@ -47,16 +47,38 @@ jobs:
         with:
           name: todos
           path: dist/apps/todos
+          retention-days: 1
 
       - uses: actions/upload-artifact@v2
         with:
           name: api
           path: dist/apps/api
+          retention-days: 1
 
-  deploy-api:
+  check-artifacts:
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     needs: build
+
+    steps:
+      - uses: actions/download-artifact@v2
+
+      - name: Check for todos artifact
+        id: check_todos
+        uses: andstor/file-existence-action@v1
+        with:
+          files: todos
+
+      - name: Check for api artifact
+        id: check_api
+        uses: andstor/file-existence-action@v1
+        with:
+          files: api
+
+  deploy-api:
+    if: ${{ jobs.check-artifacts.steps.check_api.outputs.files_exists == 'true' }}
+    runs-on: ubuntu-latest
+    needs: check-artifacts
 
     steps:
       - run: echo "Attempting to deploy the api project"
@@ -72,16 +94,15 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: api
-          allow_failures: true
 
       - name: Deploy if file exists
         if: steps.check_artifact.outputs.files_exists == 'true'
         run: echo "Deploying api" && ls -la api
 
   deploy-todos:
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ jobs.check-artifacts.steps.check_api.outputs.files_exists == 'true' }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: check-artifacts
 
     steps:
       - run: echo "Attempting to deploy the todos"
@@ -97,7 +118,6 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: todos
-          allow_failures: true
 
       - name: Deploy if file exists
         if: steps.check_artifact.outputs.files_exists == 'true'
