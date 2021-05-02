@@ -105,8 +105,5 @@ jobs:
         with:
           name: todos
 
-      - name: Display working directory
-        run: ls -la
-
       - name: Deploy
         run: echo "Deploying todos" && ls -la
