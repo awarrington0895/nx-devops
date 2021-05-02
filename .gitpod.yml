@@ -1,6 +1,6 @@
 
 tasks:
-  - init: npm install && npm install -g nx
+  - init: npm install && npm install -g nx && sh ./update-gitconfig.sh
     command: echo "Startup complete!"
 vscode:
   extensions:
