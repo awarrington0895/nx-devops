@@ -87,9 +87,11 @@ jobs:
       - run: echo "Attempting to deploy the api project"
 
       - uses: actions/download-artifact@v2
+        with:
+          name: api
 
       - name: Deploy
-        run: echo "Deploying api" && ls -la api
+        run: echo "Deploying api" && ls -la
 
   deploy_todos:
     if: needs.check_artifacts.outputs.todos-exists == 'true'
