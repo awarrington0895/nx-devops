@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     outputs:
-      todo-exists: ${{ steps.check_todos.outputs.files_exists }}
+      todos-exists: ${{ steps.check_todos.outputs.files_exists }}
       api-exists: ${{ steps.check_api.outputs.files_exists }}
 
     steps:
