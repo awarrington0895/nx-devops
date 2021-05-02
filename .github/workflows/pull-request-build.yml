@@ -62,12 +62,21 @@ jobs:
       - run: echo "Attempting to deploy the api project"
 
       - uses: actions/download-artifact@v2
-        with:
-          name: api
 
       - name: Display working directory
         if: ${{ always() }}
         run: ls -la
+
+      - name: Check for artifact
+        id: check_artifact
+        uses: andstor/file-existence-action@v1
+        with:
+          files: api
+          allow_failures: true
+      
+      - name: Deploy if file exists
+        if: steps.check_artifact.outputs.files_exists == 'true'
+        run: "Deploying api"
 
   deploy-todos:
     if: ${{ github.ref == 'refs/heads/master' }}
@@ -78,9 +87,18 @@ jobs:
       - run: echo "Attempting to deploy the todos"
 
       - uses: actions/download-artifact@v2
-        with:
-          name: todos
 
       - name: Display working directory
         if: ${{ always() }}
         run: ls -la
+
+      - name: Check for artifact
+        id: check_artifact
+        uses: andstor/file-existence-action@v1
+        with:
+          files: todos
+          allow_failures: true
+      
+      - name: Deploy if file exists
+        if: steps.check_artifact.outputs.files_exists == 'true'
+        run: "Deploying todos"
