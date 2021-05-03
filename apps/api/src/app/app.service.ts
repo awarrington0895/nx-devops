@@ -6,7 +6,6 @@ export class AppService {
   todos: Todo[] = [{ title: 'Todo 1' }, { title: 'Todo 2' }];
 
   getData(): Todo[] {
-    console.log('message');
     return this.todos;
   }
 
